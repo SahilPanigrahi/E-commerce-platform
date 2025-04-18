@@ -2,7 +2,7 @@
 
 A modern and responsive shopping cart application built using React, Next.js, Redux Toolkit, Tailwind CSS. This application provides a seamless shopping experience with smooth animations and efficient state management.
 
-[Live Demo](https://e-commerce-shopping-webapp.netlify.app/)  
+Live Link - https://e-commerce-platform-by-sahil.netlify.app/
 
 ## Features
 - Email and password sign up and sign in is also required, you may use firebase or some other service for logging in the user in and maintaining the session.
