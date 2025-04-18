@@ -5,11 +5,19 @@ A modern and responsive shopping cart application built using React, Next.js, Re
 [Live Demo](https://e-commerce-shopping-webapp.netlify.app/)  
 
 ## Features
-- Add, remove, and update items in the cart.
-- Navigate through the application using React Router.
-- State management handled by Redux Toolkit.
-- Responsive design using Tailwind CSS.
-- Smooth animations powered by Framer Motion.
+- Email and password sign up and sign in is also required, you may use firebase or some other service for logging in the user in and maintaining the session.
+- Create a visually stunning and intuitive shopping interface 
+-	Implement smooth transitions and animations between screens 
+-	Design a responsive layout that works across different device sizes 
+-	Implement advanced filtering and sorting options with animated transitions 
+-	Create an engaging product detail view with image galleries 
+-	Add a "Quick Look" feature with gesture controls 
+-	Implement skeleton loading states for improved perceived performance 
+-	Implement efficient state management across the application 
+-	Create a persistent shopping cart that survives browser refresh (local data storage) also survives logout login. 
+-	Implement offline mode with data synchronization when back online 
+-	Use optimistic UI updates for a responsive feel 
+
 
 ---
 
