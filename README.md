@@ -1,3 +1,19 @@
+# E-commerce Platform
+
+A modern and responsive shopping cart application built using React, Next.js, Redux Toolkit, Tailwind CSS. This application provides a seamless shopping experience with smooth animations and efficient state management.
+
+[Live Demo](https://e-commerce-shopping-webapp.netlify.app/)  
+
+## Features
+- Add, remove, and update items in the cart.
+- Navigate through the application using React Router.
+- State management handled by Redux Toolkit.
+- Responsive design using Tailwind CSS.
+- Smooth animations powered by Framer Motion.
+
+---
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
