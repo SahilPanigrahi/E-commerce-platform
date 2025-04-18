@@ -10,16 +10,21 @@ export default function ProductDetails({ params }) {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-
-  // Unwrap params using React.use() for accessing params.id
   const { id } = React.use(params);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-        const data = await response.json();
-        setProduct(data);
+        const localData = localStorage.getItem(`product_${id}`);
+        if (localData) {
+          const parsedData = JSON.parse(localData);
+          setProduct(parsedData);
+        } else {
+          const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+          const data = await response.json();
+          setProduct(data);
+          localStorage.setItem(`product_${id}`, JSON.stringify(data));
+        }
       } catch (error) {
         console.error("Failed to fetch product:", error);
       } finally {
@@ -74,14 +79,13 @@ export default function ProductDetails({ params }) {
             ${product.price}
           </p>
         </div>
-      {/* <button
-        onClick={handleAddToCart}
-        className="w-full sm:w-auto px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 focus:outline-none"
-      >
-        Add to Cart
-      </button> */}
+        {/* <button
+          onClick={handleAddToCart}
+          className="w-full sm:w-auto px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 focus:outline-none"
+        >
+          Add to Cart
+        </button> */}
       </div>
-
     </main>
   );
 }

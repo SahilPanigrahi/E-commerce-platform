@@ -9,14 +9,18 @@ export default function SignUpForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true); 
 
     if (!name || !email || !password) {
       setError("All fields are necessary.");
+      setLoading(false);
       return;
     }
 
@@ -33,6 +37,7 @@ export default function SignUpForm() {
 
       if (user) {
         setError("User already exists.");
+        setLoading(false);
         return;
       }
 
@@ -57,6 +62,8 @@ export default function SignUpForm() {
       }
     } catch (error) {
       console.log("Error during registration: ", error);
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -89,9 +96,12 @@ export default function SignUpForm() {
           />
           <button
             type="submit"
-            className="bg-black text-white font-bold rounded-md px-6 py-2 hover:bg-gray-800 transition duration-200"
+            disabled={loading}
+            className={`${
+              loading ? "bg-gray-500 cursor-not-allowed" : "bg-black hover:bg-gray-800"
+            } text-white font-bold rounded-md px-6 py-2 transition duration-200`}
           >
-            Sign Up
+            {loading ? "Signing up..." : "Sign Up"}
           </button>
 
           {error && (

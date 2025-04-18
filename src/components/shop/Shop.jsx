@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import React, { Suspense, lazy } from 'react';
+
 const ProductGrid = lazy(() => import('@/components/ProductGrid'));
 
 export default function Shop() {
@@ -10,10 +11,20 @@ export default function Shop() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://fakestoreapi.com/products');
-        const data = await response.json();
-        setProducts(data);
-        setFilteredProducts(data);
+        // Check localStorage first
+        const localData = localStorage.getItem('products');
+        if (localData) {
+          const parsedData = JSON.parse(localData);
+          setProducts(parsedData);
+          setFilteredProducts(parsedData);
+        } else {
+          const response = await fetch('https://fakestoreapi.com/products');
+          const data = await response.json();
+          setProducts(data);
+          setFilteredProducts(data);
+          // Save to localStorage
+          localStorage.setItem('products', JSON.stringify(data));
+        }
       } catch (error) {
         console.error('Failed to fetch products:', error);
       }

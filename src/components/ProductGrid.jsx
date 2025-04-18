@@ -8,6 +8,8 @@ export default function ProductGrid({ products }) {
   const [filterCategory, setFilterCategory] = useState("All");
   const [sortOption, setSortOption] = useState("none");
   const itemsPerPage = 8;
+  // Add fade key to force re-mount on filter/sort change
+  const [fadeKey, setFadeKey] = useState(0);
 
   // Filtered and sorted products
   const filteredProducts = products.filter((product) =>
@@ -32,20 +34,23 @@ export default function ProductGrid({ products }) {
   useEffect(() => {
     if (products && products.length > 0) {
       setLoading(false);
+      setFadeKey((prev) => prev + 1);
     }
-  }, [products]);
+  }, [products, filterCategory, sortOption]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
   return (
-    <div className="flex">
+    <div className="flex flex-col lg:flex-row max-[1024px]:justify-center max-[1024px]:items-center  min-h-screen">
       {/* Sidebar */}
       <aside className="w-1/6 p-4 border-r">
         <h2 className="text-xl font-bold mb-4">Filters</h2>
         <div className="mb-4">
-          <label htmlFor="Category" className="block font-semibold mb-2">Category</label>
+          <label htmlFor="Category" className="block font-semibold mb-2">
+            Category
+          </label>
           <select
             id="Category"
             className="w-full border p-2 rounded"
@@ -64,7 +69,9 @@ export default function ProductGrid({ products }) {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="Sort By" className="block font-semibold mb-2">Sort By</label>
+          <label htmlFor="Sort By" className="block font-semibold mb-2">
+            Sort By
+          </label>
           <select
             id="Sort By"
             className="w-full border p-2 rounded"
@@ -82,7 +89,7 @@ export default function ProductGrid({ products }) {
 
       {/* Product Grid */}
       <div className="w-5/6 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div key={fadeKey} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 fade-in">
           {loading
             ? // Render shimmer effect while loading
               Array(8)
@@ -111,7 +118,7 @@ export default function ProductGrid({ products }) {
                     alt={`${product.title} in ${product.category}`}
                     width={400}
                     height={400}
-                    className="w-full h-40 object-cover rounded"
+                    className="w-full h-40 object-contain rounded transition-transform duration-300 hover:scale-110 hover:ease-linear"
                     priority={true}
                   />
                   <h2 className="text-lg text-center font-bold mt-2">

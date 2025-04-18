@@ -2,6 +2,9 @@ import "./globals.css";
 import ReduxProvider from "@/redux/redux-provider";
 import Header from "@/components/landing-page/Header";
 import { AuthProvider } from "./Providers";
+const Footer = dynamic(() => import('@/components/common/Footer'))
+import dynamic from 'next/dynamic'
+
 
 
 export const metadata = {
@@ -17,6 +20,7 @@ export default function RootLayout({ children }) {
         <ReduxProvider>
           <Header />
           {children}
+          <Footer />
           </ReduxProvider>
           </AuthProvider>
       </body>

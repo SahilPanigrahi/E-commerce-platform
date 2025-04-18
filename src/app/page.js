@@ -4,7 +4,6 @@ import Sale from '@/components/landing-page/Sale'
 import YearProduct from '@/components/landing-page/YearProduct'
 import React from 'react'
 const HeroBottom = dynamic(() => import('@/components/landing-page/HeroBottom'))
-const Footer = dynamic(() => import('@/components/landing-page/Footer'))
 
 const App = () => {
   return (
@@ -15,7 +14,6 @@ const App = () => {
         <Sale />
         <YearProduct />
       </div>
-      <Footer />
     </div>
   )
 }
